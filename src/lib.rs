@@ -2,7 +2,7 @@ mod toml;
 mod utils;
 
 use chumsky::Parser;
-use toml::parser;
+use toml::{eval, parser};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -18,7 +18,14 @@ pub fn greet() {
 #[wasm_bindgen]
 pub fn parse() {
     let parser = parser();
-    let result = parser.parse("5");
 
-    println!("{:?}", result)
+    match parser.parse("5000") {
+        Ok(ast) => match eval(&ast) {
+            Ok(output) => println!("{}", output),
+            Err(eval_err) => println!("Evaluation error: {}", eval_err),
+        },
+        Err(parse_errs) => parse_errs
+            .into_iter()
+            .for_each(|e| println!("Parse error: {}", e)),
+    }
 }
