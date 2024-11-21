@@ -1,6 +1,6 @@
 use chumsky::{prelude::*, Parser};
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug``)]
 pub enum Toml {
     Num(f64),
 }
