@@ -3,6 +3,7 @@ use chumsky::{prelude::*, Parser};
 #[derive(Clone, Debug)]
 pub enum Toml {
     Num(f64),
+
     Str(String),
 }
 
