@@ -1,6 +1,7 @@
 mod toml;
 mod utils;
 
+use std::fs;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -14,4 +15,8 @@ pub fn greet() {
 }
 
 #[wasm_bindgen]
-pub fn parse() {}
+pub fn parse() {
+    let contents =
+        fs::read_to_string("cargo.toml").expect("Should have been able to read the file");
+    println!("With text:\n{contents}");
+}
