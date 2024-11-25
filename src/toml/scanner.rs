@@ -1,18 +1,22 @@
 use std::{any::Any, convert::TryInto};
 
+use crate::utils::get_substring;
+
 use super::token::{Token, TokenType};
 
 pub trait Scanner {
     fn scan_tokens(&self) -> Vec<Token>;
     fn scan_token(&self, symbol: char) -> Token;
-    fn add_token(&self, token_type: TokenType);
+    fn create_token(&self, token_type: TokenType) -> Token;
     fn add_token_literal(&self, token_type: TokenType, literal: Box<dyn Any>);
     fn is_at_end(&self) -> bool;
 }
 
 pub struct TomlScanner {
     source: String,
-    current: i64,
+    start: usize,
+    current: usize,
+    tokens: Vec<Token>,
 }
 
 impl Scanner for TomlScanner {
@@ -27,14 +31,16 @@ impl Scanner for TomlScanner {
 
     fn scan_token(&self, symbol: char) -> Token {
         match symbol {
-            '[' => self.add_token(TokenType::LeftBrace),
-            _ => (),
-        }
+            '[' => self.create_token(TokenType::LeftBrace),
+            _ => todo!(),
+        };
         todo!()
     }
 
-    fn add_token(&self, token_type: TokenType) {
-        todo!()
+    fn create_token(&self, token_type: TokenType) -> Token {
+        let text = get_substring(&self.source, self.start, self.current);
+        let token = Token::new(token_type, text, 0, None);
+        token
     }
 
     fn is_at_end(&self) -> bool {

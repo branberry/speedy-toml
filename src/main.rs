@@ -1,5 +1,4 @@
-use chumsky::primitive::Container;
-use speedy_toml::{parse, utils::get_substring};
+use speedy_toml::utils::get_substring;
 
 pub fn main() {
     let str_test: String = "hello".to_string();

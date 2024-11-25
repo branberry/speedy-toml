@@ -11,6 +11,22 @@ pub enum TokenType {
 pub struct Token {
     token_type: TokenType,
     lexeme: String,
-    literal: Box<dyn Any>,
-    line: i32,
+    literal: Option<Box<dyn Any>>,
+    line: usize,
+}
+
+impl Token {
+    pub fn new(
+        token_type: TokenType,
+        lexeme: String,
+        line: usize,
+        literal: Option<Box<dyn Any>>,
+    ) -> Self {
+        Self {
+            token_type,
+            lexeme,
+            line,
+            literal,
+        }
+    }
 }
