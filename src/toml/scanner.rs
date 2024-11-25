@@ -6,7 +6,8 @@ pub trait Scanner {
     fn scan_tokens(&self) -> Vec<Token>;
     fn scan_token(&self, symbol: char) -> Token;
     fn advance(&mut self) -> char;
-    fn add_token(&self, token_type: TokenType, literal: Box<dyn Any>);
+    fn add_token(&self, token_type: TokenType);
+    fn add_token_literal(&self, token_type: TokenType, literal: Box<dyn Any>);
     fn is_at_end(&self) -> bool;
 }
 
@@ -18,7 +19,12 @@ pub struct TomlScanner {
 impl Scanner for TomlScanner {
     fn scan_tokens(&self) -> Vec<Token> {
         let tokens: Vec<Token> = Vec::new();
-        for ch in self.source.chars() {}
+        for ch in self.source.chars() {
+            match ch {
+                '[' => self.add_token(TokenType::LeftBrace),
+                _ => (),
+            }
+        }
 
         return tokens;
     }
@@ -33,11 +39,15 @@ impl Scanner for TomlScanner {
         self.source.chars().next().unwrap()
     }
 
-    fn add_token(&self, token_type: TokenType, literal: Box<dyn Any>) {
+    fn add_token(&self, token_type: TokenType) {
         todo!()
     }
 
     fn is_at_end(&self) -> bool {
         self.current < self.source.len().try_into().unwrap()
+    }
+
+    fn add_token_literal(&self, token_type: TokenType, literal: Box<dyn Any>) {
+        todo!()
     }
 }
