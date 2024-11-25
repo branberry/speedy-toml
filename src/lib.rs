@@ -1,5 +1,5 @@
 mod toml;
-mod utils;
+pub mod utils;
 
 use std::fs;
 use wasm_bindgen::prelude::*;

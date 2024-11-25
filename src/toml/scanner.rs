@@ -5,7 +5,6 @@ use super::token::{Token, TokenType};
 pub trait Scanner {
     fn scan_tokens(&self) -> Vec<Token>;
     fn scan_token(&self, symbol: char) -> Token;
-    fn advance(&mut self) -> char;
     fn add_token(&self, token_type: TokenType);
     fn add_token_literal(&self, token_type: TokenType, literal: Box<dyn Any>);
     fn is_at_end(&self) -> bool;
@@ -20,23 +19,18 @@ impl Scanner for TomlScanner {
     fn scan_tokens(&self) -> Vec<Token> {
         let tokens: Vec<Token> = Vec::new();
         for ch in self.source.chars() {
-            match ch {
-                '[' => self.add_token(TokenType::LeftBrace),
-                _ => (),
-            }
+            self.scan_token(ch);
         }
 
         return tokens;
     }
 
     fn scan_token(&self, symbol: char) -> Token {
+        match symbol {
+            '[' => self.add_token(TokenType::LeftBrace),
+            _ => (),
+        }
         todo!()
-    }
-
-    fn advance(&mut self) -> char {
-        self.current += 1;
-
-        self.source.chars().next().unwrap()
     }
 
     fn add_token(&self, token_type: TokenType) {
