@@ -1,22 +1,20 @@
 mod toml;
 pub mod utils;
-
-use std::fs;
+extern crate console_error_panic_hook;
+use js_sys::Promise;
+use std::panic;
 use wasm_bindgen::prelude::*;
+use web_sys::{Request, RequestInit};
 
 #[wasm_bindgen]
 extern "C" {
-    fn alert(s: &str);
+    #[wasm_bindgen(js_name = fetch)]
+    fn fetch_with_request_and_init(input: &Request, init: &RequestInit) -> Promise;
 }
 
 #[wasm_bindgen]
-pub fn greet() {
-    alert("Hello, toml-js!");
-}
+pub fn parse(test_str: String) -> String {
+    panic::set_hook(Box::new(console_error_panic_hook::hook));
 
-#[wasm_bindgen]
-pub fn parse() {
-    let contents =
-        fs::read_to_string("cargo.toml").expect("Should have been able to read the file");
-    println!("With text:\n{contents}");
+    test_str
 }
