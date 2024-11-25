@@ -16,17 +16,17 @@ pub struct TomlScanner {
     source: String,
     start: usize,
     current: usize,
-    tokens: Vec<Token>,
 }
 
 impl Scanner for TomlScanner {
     fn scan_tokens(&self) -> Vec<Token> {
-        let tokens: Vec<Token> = Vec::new();
+        let mut tokens: Vec<Token> = Vec::new();
         for ch in self.source.chars() {
-            self.scan_token(ch);
+            let token = self.scan_token(ch);
+            tokens.push(token);
         }
 
-        return tokens;
+        tokens
     }
 
     fn scan_token(&self, symbol: char) -> Token {
