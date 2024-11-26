@@ -1,3 +1,3 @@
 mod lexer;
-mod scanner;
+pub mod scanner;
 mod token;

@@ -1,0 +1,83 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in library 'speedy_toml'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--lib",
+          "--package=speedy-toml"
+        ],
+        "filter": {
+          "name": "speedy_toml",
+          "kind": "lib"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug executable 'speedy-toml'",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=speedy-toml",
+          "--package=speedy-toml"
+        ],
+        "filter": {
+          "name": "speedy-toml",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in executable 'speedy-toml'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--bin=speedy-toml",
+          "--package=speedy-toml"
+        ],
+        "filter": {
+          "name": "speedy-toml",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug integration test 'web'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--test=web",
+          "--package=speedy-toml"
+        ],
+        "filter": {
+          "name": "web",
+          "kind": "test"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

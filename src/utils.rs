@@ -10,11 +10,6 @@ pub fn set_panic_hook() {
 }
 
 pub fn get_substring(string: &String, start: usize, end: usize) -> String {
-    let mut iter = string.char_indices();
-
-    let (start, _) = iter.nth(1).unwrap();
-
-    let (end, _) = iter.nth(2).unwrap();
     let sub_string = &string[start..end];
 
     sub_string.to_string()

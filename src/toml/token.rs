@@ -1,5 +1,6 @@
 use std::any::Any;
 
+#[derive(Debug)]
 pub enum TokenType {
     // single char token
     Comma,
@@ -8,6 +9,7 @@ pub enum TokenType {
     RightBrace,
 }
 
+#[derive(Debug)]
 pub struct Token {
     token_type: TokenType,
     lexeme: String,

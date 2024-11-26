@@ -1,10 +1,12 @@
-use speedy_toml::utils::get_substring;
+mod toml;
+pub mod utils;
+use toml::scanner::{Scanner, TomlScanner};
 
 pub fn main() {
-    let str_test: String = "hello".to_string();
+    let str_test: String = "[]".to_string();
 
-    let sub_string = get_substring(&str_test, 0, 3);
-    println!("{sub_string}");
+    let scanner: TomlScanner = TomlScanner::new("[]".to_string());
+    scanner.scan_tokens();
     for c in str_test.chars() {
         println!("{:?}", c);
     }
