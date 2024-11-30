@@ -6,7 +6,9 @@ pub enum TokenType {
     Comma,
     Dot,
     LeftBrace,
+    DoubleLeftBrace,
     RightBrace,
+    DoubleRightBrace,
 }
 
 #[derive(Debug)]
