@@ -21,7 +21,7 @@ wasm-bindgen = "0.2.84"
 # all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
 # code size when deploying.
 console_error_panic_hook = { version = "0.1.7", optional = true }
-chumsky = { version = "0.9.3", features = ["std"], default-features = false }
+chumsky = { version = "0.11.0", features = ["std"], default-features = false }
 web-sys = { version = "0.3.72", features = [
   "RequestCredentials",
   "RequestInit",
